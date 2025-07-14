@@ -1,21 +1,23 @@
----
-
-```markdown
 # 📦 ProjectMaterial - Aplicación Angular
 
 Este proyecto es una aplicación web desarrollada con Angular 20, generada con Angular CLI. Incluye funcionalidades modernas como búsqueda dinámica, consumo de APIs externas y visualización de resultados en tablas o tarjetas.
 
 ---
 
-```
+---
 
-Capturas de pantalla
+## 🧑‍💻 Capturas de pantalla
+
 <img width="2158" height="1250" alt="image" src="https://github.com/user-attachments/assets/da30542e-56a2-41b0-8d23-0a3e7da059ea" />
 <img width="2159" height="1254" alt="image" src="https://github.com/user-attachments/assets/1fd81d1c-b039-4aaf-82eb-4b7c64b2ce9b" />
 
-
-
 ---
+
+
+```markdown
+![Inicio](screenshots/inicio.png)
+![Búsqueda](screenshots/busqueda.png)
+```
 
 ---
 
@@ -68,6 +70,15 @@ projectmaterial/
 
 ## 🔍 Ejemplo de Código
 
+### 📦 Servicio para consultar Pokémon (`pokemon.service.ts`)
+
+```ts
+getPokemon(nombre: string): Observable<any> {
+  const url = `https://pokeapi.co/api/v2/pokemon/${nombre}`;
+  return this.http.get<any>(url);
+}
+```
+
 ### 🔍 Buscar desde el componente (`busqueda.component.ts`)
 
 ```ts
@@ -80,6 +91,15 @@ buscarPokemon() {
 }
 ```
 
+### 🎨 Mostrar resultados (`busqueda.component.html`)
+
+```html
+<div *ngIf="pokemon">
+  <h3>{{ pokemon.name | titlecase }}</h3>
+  <img [src]="pokemon.sprites.front_default" alt="Pokémon">
+  <p>Peso: {{ pokemon.weight }} | Altura: {{ pokemon.height }}</p>
+</div>
+```
 
 ---
 
@@ -114,5 +134,4 @@ Vicente de Jesús Zenón Regalado
 
 ## 📄 Licencia
 
-Este proyecto es de uso libre para fines académicos y de aprendizaje. Si lo reutilizas, se agradece la mención del autor.
-```
+Este proyecto es de uso libre para fines académicos y de aprendizaje. Si lo reutilizas, se agradece la mención del autor
